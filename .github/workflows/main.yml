@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build App for Windows, Linux, and macOS
+    name: Build App for Linux and macOS
     runs-on: ubuntu-latest
 
     steps:
@@ -19,25 +19,11 @@ jobs:
         with:
           node-version: 14
 
-      - name: Enable multiarch and install wine32
-        run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt-get install -y wine32
-
       - name: Install dependencies
         run: npm install
-
-      - name: Build for Windows
-        run: npx electron-forge make --platform=win32
 
       - name: Build for Linux
         run: npx electron-forge make --platform=linux
 
       - name: Build for macOS
         run: npx electron-forge make --platform=darwin
-
-      - name: Run rcedit.exe (Windows only)
-        if: runner.os == 'Windows'
-        run: |
-          "Z:\\home\\runner\\work\\PGX-Launcher\\PGX-Launcher\\node_modules\\electron-winstaller\\vendor\\rcedit.exe"
