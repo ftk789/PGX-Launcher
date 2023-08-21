@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="styles.css">
+<script src="News.js" defer></script>
+<script src="GameUpdater.js" defer></script>
+<div class="overlay" id="introOverlay">
+  <div class="intro-text" id="introText">Pixel Gun X</div>
+</div>
+<!-- Add this script tag after the other scripts -->
+<script>
+  // Function to fade out the intro overlay and text
+  function fadeOutIntro() {
+    const overlay = document.getElementById('introOverlay');
+    const introText = document.getElementById('introText');
+
+    // Fade out the overlay and text
+    overlay.style.transition = 'opacity 2s ease';
+    overlay.style.opacity = 0;
+    introText.style.opacity = 0;
+
+    // Remove the overlay after the fade-out animation completes
+    setTimeout(() => {
+      overlay.remove();
+    }, 2000);
+  }
+
+  // Event listener for when the window has finished loading
+  window.addEventListener('load', () => {
+    // Show the intro overlay and text initially
+    const overlay = document.getElementById('introOverlay');
+    const introText = document.getElementById('introText');
+
+    overlay.style.opacity = 1;
+    introText.style.transition = 'opacity 2s ease';
+    introText.style.opacity = 1;
+
+    // Schedule the fade-out effect after 2 seconds (2000ms)
+    setTimeout(fadeOutIntro, 2000);
+  });
+</script>
+
+<div class="container">
+  <div class="news">
+    <div class="News2" id="News">
+    </div>
+  </div>
+
+  <div id="imageOverlay" onclick="hideImageOverlay(event)"></div>
+
+  <div class="progress">
+    <div>
+      <div class="label">
+        <span id="file-progress"></span>
+      </div>
+      <div class="bar">
+        <span id="loading-progress"></span>
+        <div id="loading" class="loading"></div>        
+      </div>
+    </div>
+  </div>
+  <div class="btns">
+    <div>
+      <button id="btn-exit" class="btn-update"></button>
+      <button id="btn-start" class="btn-start"></button>
+    </div>
+  </div>
+</div>

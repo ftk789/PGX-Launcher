@@ -1,0 +1,256 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background: url(https://media.discordapp.net/attachments/1124084594967334962/1134492246453010452/image_002_00031.png?width=1124&height=632)
+    center/cover no-repeat;
+  color: white;
+  overflow: hidden;
+}
+
+
+img {
+  width: 320px;
+  display: block; /* Added to center the images */
+  margin: 0 auto; /* Added to center the images */
+  cursor: pointer;
+  transition: width 0.5s ease;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px 4px rgba(255, 255, 255, 0.616) inset,
+  1px 1px 5px black inset;
+}
+
+/* Full-screen overlay */
+#imageOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+}
+
+#imageOverlay img {
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#imageOverlay.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Additional styles to adjust the overlay image size */
+#imageOverlay.show img {
+  width: auto;
+  height: auto;
+  max-width: 80%;
+  max-height: 80%;
+}
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 80px;
+  grid-template-columns: 1fr 300px;
+  grid-template-areas:
+    "news news"
+    "progress progress"
+    "btns btns";
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  z-index: 9999;
+  pointer-events: none; /* Allows clicking through the overlay */
+}
+
+.intro-text {
+  font-size: 48px;
+  color: white;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+
+.news {
+  /*   border: 1px solid black; */
+  height: 500px;
+  grid-area: news;
+  padding: 6px;
+}
+.News2 {
+  grid-area: news;
+  overflow-y: auto;
+}
+
+.news > div {
+  background-color: rgba(0, 0, 0, 0.493);
+  height: 100%;
+  display: flex;
+  backdrop-filter: blur(5px);
+  padding: 5px;
+  box-shadow: 1px 1px 5px black;
+}
+
+.login {
+  /*   border: 1px solid black; */
+  padding: 10px;
+  grid-area: login;
+}
+
+.login > div {
+  display: flex;
+  backdrop-filter: blur(5px);
+  flex-direction: column;
+  padding: 5px;
+  box-shadow: 1px 1px 5px black;
+}
+input:focus {
+  border: 3px solid #555;
+}
+.login > div > input {
+  font-size: 1rem;
+  padding: 10px;
+  margin: 5px 10px;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  text-align: center;
+  outline: none;
+}
+
+.login > div > button {
+  margin: 5px 10px;
+  height: 35px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  background: #264472;
+  border: 1px solid white;
+  color: white;
+}
+
+.progress {
+  /*   border: 1px solid black; */
+  grid-area: progress;
+  padding: 15px 10px;
+}
+
+.progress > div {
+  background-color: rgba(0, 0, 0, 0.493);
+  border-radius: 10px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  backdrop-filter: blur(5px);
+  padding: 5px;
+  box-shadow: 1px 1px 5px black;
+}
+
+.progress > div > .bar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1b1b1b;
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid black;
+  box-shadow: 1px 1px 3px black inset;
+}
+
+
+.progress > div > .bar > span {
+  z-index: 5;
+  background-color: #0000009c;
+  border-radius: 3px;
+  backdrop-filter: blur(5px);
+  padding: 1px;
+  box-shadow: 1px 1px 5px black;
+}
+
+.progress > div > .bar > .loading {
+  position: absolute;
+  left: 0;
+  /*   width: 60%; */
+  height: 100%;
+  background: url(https://media.discordapp.net/attachments/1124084594967334962/1135636263957958656/progress-bar-image_0003_-5.png);
+  z-index: 2;
+
+  animation: loading 5s linear 2s forwards;
+}
+
+.progress > div > .label {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btns {
+  grid-area: btns;
+  position: relative;
+  right: -390px;
+  padding: 15px 10px;
+  border-radius: 20px;
+}
+
+.btns > div {
+  display: flex;
+  padding: 2px;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  box-shadow: 1px 1px 5px black;
+  width: 464px;
+  height: 105px;
+  border: 4px solid black;
+}
+
+.btns > div > button {
+  flex: 1;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-inline: 2px;
+}
+
+.btn-update {
+  background: #c01c1c;
+  color: white;
+  background: url(https://media.discordapp.net/attachments/1124084594967334962/1134510955724812288/image_2.jpg)
+    center/cover no-repeat;
+}
+
+.btn-start {
+  background: #2ccc17;
+  color: white;
+
+  background: url(https://media.discordapp.net/attachments/1124084594967334962/1134510046923980951/image_1.jpg)
+    center/cover no-repeat;
+  color: white;
+}
+.btn-start:disabled {
+  background: #0e240b;
+  color: rgb(36, 19, 19);
+
+  background: url(https://media.discordapp.net/attachments/1124084594967334962/1134932778329313410/image_3.jpg)
+    center/cover no-repeat;
+  color: rgb(43, 27, 27);
+}
