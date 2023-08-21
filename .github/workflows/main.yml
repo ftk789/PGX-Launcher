@@ -1,0 +1,33 @@
+name: Build Electron App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build App for Windows, Linux, and macOS
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build for Windows
+        run: npx electron-forge make --platform=win32
+
+      - name: Build for Linux
+        run: npx electron-forge make --platform=linux
+
+      - name: Build for macOS
+        run: npx electron-forge make --platform=darwin
+
