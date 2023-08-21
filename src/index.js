@@ -6,18 +6,6 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-app.setUserTasks([
-  {
-    program: process.execPath,
-    arguments: '--new-window',
-    iconPath: __dirname + 'icon.png',
-    iconIndex: 1,
-    title: 'PowerStream',
-    description: 'Power your own stream using PowerStream!'
-  }
-])
-
-
 
 const createWindow = () => {
   // Create the browser window.
