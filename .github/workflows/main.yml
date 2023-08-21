@@ -25,11 +25,23 @@ jobs:
       - name: Build for Linux
         run: npx electron-forge make --platform=linux
 
+      - name: Create Linux Zip
+        run: zip -r linux-build.zip out/make/linux
+
       - name: Build for macOS
         run: npx electron-forge make --platform=darwin
 
-      - name: Upload Build Artifact
+      - name: Create macOS Zip
+        run: zip -r mac-build.zip out/make/darwin
+
+      - name: Upload Linux Build Zip
         uses: actions/upload-artifact@v2
         with:
-          name: builds
-          path: out/make
+          name: linux-build
+          path: linux-build.zip
+
+      - name: Upload macOS Build Zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: mac-build
+          path: mac-build.zip
