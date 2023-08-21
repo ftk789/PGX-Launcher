@@ -19,8 +19,11 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install Wine
-        run: sudo apt-get update && sudo apt-get install -y wine64
+      - name: Enable multiarch and install wine32
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install -y wine32
 
       - name: Install dependencies
         run: npm install
@@ -33,3 +36,8 @@ jobs:
 
       - name: Build for macOS
         run: npx electron-forge make --platform=darwin
+
+      - name: Run rcedit.exe (Windows only)
+        if: runner.os == 'Windows'
+        run: |
+          "Z:\\home\\runner\\work\\PGX-Launcher\\PGX-Launcher\\node_modules\\electron-winstaller\\vendor\\rcedit.exe"
