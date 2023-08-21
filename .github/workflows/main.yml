@@ -25,35 +25,11 @@ jobs:
       - name: Build for Linux
         run: npx electron-forge make --platform=linux
 
-      - name: Navigate to Linux Build Directory
-        run: cd out/make/linux
-
-      - name: Create Linux Zip
-        run: zip -r linux-build.zip .
-
-      - name: Move Linux Zip to Workspace
-        run: mv linux-build.zip ../../
-
       - name: Build for macOS
         run: npx electron-forge make --platform=darwin
 
-      - name: Navigate to macOS Build Directory
-        run: cd out/make/darwin
-
-      - name: Create macOS Zip
-        run: zip -r mac-build.zip .
-
-      - name: Move macOS Zip to Workspace
-        run: mv mac-build.zip ../../
-
-      - name: Upload Linux Build Zip
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: linux-build
-          path: linux-build.zip
-
-      - name: Upload macOS Build Zip
-        uses: actions/upload-artifact@v2
-        with:
-          name: mac-build
-          path: mac-build.zip
+          name: builds
+          path: out/make
