@@ -6,11 +6,53 @@ const os = require('os');
 const { execFile } = require('child_process');
 
 
-const url = 'https://pgx-news.ftk789.repl.co/download';
+var url = 'https://pgx-news.ftk789.repl.co/downloadwin';
+
+
+
+const platform = os.platform();
+
 const desktopPath = path.join(os.homedir(), 'Desktop');
-const folderPath = path.join(desktopPath, 'PGX');
-const exeFilePath = path.join(folderPath, 'My project (4).exe');
+
+var folderPath = 'PGX'
+
+
+if (!fs.existsSync(folderPath)) {
+  fs.mkdir(folderPath, (err) => {
+    if (err) {
+      console.error('Error creating folder:', err);
+    } else {
+      console.log('Folder created successfully:', folderPath);
+    }
+  });
+} else {
+  console.log('Folder already exists:', folderPath);
+}
+
+var folderPath = path.join(desktopPath, 'PGX');
+
+
+if (platform === 'win32') {
+  var url = 'https://pgx-news.ftk789.repl.co/downloadwin';
+  var exeFilePath = path.join(folderPath, 'PGX.exe');
+  console.log("The System is " + platform)
+} else if (platform === 'darwin') {
+  var url = 'https://pgx-news.ftk789.repl.co/downloadmac';
+  var exeFilePath = path.join(folderPath, 'PGX.app');
+
+  console.log("The System is " + platform)
+
+} else if (platform === 'linux') {
+  console.log("The System is " + platform)
+
+} else {
+  console.error('Unsupported operating system.');
+  process.exit(1);
+}
+
 const Status = document.getElementById("file-progress")
+
+
 
 if (fs.existsSync(exeFilePath)) {
   console.log("Game is downloaded.")
