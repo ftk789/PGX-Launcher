@@ -38,7 +38,7 @@ if (platform === 'win32') {
   console.log("The System is " + platform)
 } else if (platform === 'darwin') {
   var url = 'https://pgx-news.ftk789.repl.co/downloadmac';
-  var exeFilePath = path.join(folderPath, 'PGX.app');
+  var exeFilePath = path.join(folderPath, 'PGX');
 
   console.log("The System is " + platform)
 
