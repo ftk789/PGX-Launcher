@@ -229,7 +229,6 @@ function startGame2(startButton) {
   const { exec } = require('child_process');
 
 // Replace 'folderPath' with the actual path of the folder you want to open
-const folderPath = '/path/to/your/folder';
 
 if (platform === 'darwin') {
   var url = 'https://pgx-news.ftk789.repl.co/downloadmac';
