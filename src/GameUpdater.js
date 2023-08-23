@@ -224,9 +224,33 @@ if (!fileName) {
 
 function startGame2(startButton) {
   startButton.disabled = true;
+
+
+  const { exec } = require('child_process');
+
+// Replace 'folderPath' with the actual path of the folder you want to open
+const folderPath = '/path/to/your/folder';
+
+if (platform === 'darwin') {
+  var url = 'https://pgx-news.ftk789.repl.co/downloadmac';
+  var exeFilePath = path.join(folderPath, 'PGX');
+
+  console.log("The System is " + platform)
+
+
+// Use the 'open' command to open the folder in Finder
+exec(`open "${folderPath}"`, (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error opening folder: ${error.message}`);
+    return;
+  }
+  console.log('Folder opened successfully');
+});
+} else{
+
   execFile(exeFilePath, (error, stdout, stderr) => {
     if (error) {
-      console.error('Error:', error);
+      console.error('Error:', error); 
     } else {
       console.log('stdout:', stdout);
       startButton.disabled = false;
@@ -235,6 +259,7 @@ function startGame2(startButton) {
   });
   console.log(exeFilePath)
 
+}
 }
 
 
